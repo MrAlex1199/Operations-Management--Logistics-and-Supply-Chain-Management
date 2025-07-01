@@ -1,940 +1,550 @@
 <!DOCTYPE html>
 <html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Infographic: เจาะลึกการจัดการปฏิบัติการและโซ่อุปทาน (บทที่ 1)</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infographic: เจาะลึกการจัดการปฏิบัติการและโซ่อุปทาน (ปรับปรุงใหม่)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
     <style>
-      body {
-        font-family: "Sarabun", sans-serif;
-        background-color: #1a1a2e; /* Dark background */
-        color: #e0e0e0; /* Light text color */
-      }
-      .chart-container {
-        position: relative;
-        width: 100%;
-        max-width: 600px;
-        margin-left: auto;
-        margin-right: auto;
-        height: 350px;
-        max-height: 400px;
-      }
-      @media (min-width: 768px) {
-        .chart-container {
-          height: 400px;
+        body {
+            font-family: 'Sarabun', sans-serif;
+            background-color: #1a1a2e; /* Dark background */
+            color: #e0e0e0; /* Light text color */
         }
-      }
-      .flow-arrow {
-        font-size: 2rem; /* Larger arrow */
-        color: #f29f05;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        height: 100%;
-      }
-      .exam-focus {
-        background-color: #f2e63d; /* Yellow for highlight */
-        color: #1a1a2e; /* Dark text on yellow */
-        padding: 0.25rem 0.75rem;
-        border-radius: 0.5rem;
-        font-weight: bold;
-        display: inline-block;
-        margin-bottom: 1rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      }
-      .calculation-box {
-        background-color: #3a3a5a; /* Slightly lighter dark background for calculations */
-        border: 2px solid #f29f05; /* Orange border */
-        padding: 1.5rem;
-        border-radius: 0.75rem;
-        margin-top: 1rem;
-        margin-bottom: 1.5rem;
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
-      }
-      .calculation-formula {
-        font-family: "Courier New", Courier, monospace;
-        font-size: 1.25rem;
-        color: #77d977; /* Light green for formulas */
-        font-weight: bold;
-        text-align: center;
-        margin-bottom: 0.75rem;
-      }
-      .percentage-calculation {
-        font-family: "Courier New", Courier, monospace;
-        font-size: 1rem;
-        color: #f2e63d; /* Yellow for percentage */
-        font-weight: bold;
-        text-align: center;
-        margin-top: 0.5rem;
-      }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-arrow {
+            font-size: 2rem; /* Larger arrow */
+            color: #F29F05;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+        .exam-focus {
+            background-color: #F2E63D; /* Yellow for highlight */
+            color: #1a1a2e; /* Dark text on yellow */
+            padding: 0.25rem 0.75rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 1rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .calculation-box {
+            background-color: #3a3a5a; /* Slightly lighter dark background for calculations */
+            border: 2px solid #F29F05; /* Orange border */
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+        .calculation-formula {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.25rem;
+            color: #77D977; /* Light green for formulas */
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 0.75rem;
+        }
+        .percentage-calculation {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            color: #F2E63D; /* Yellow for percentage */
+            font-weight: bold;
+            text-align: center;
+            margin-top: 0.5rem;
+        }
     </style>
-  </head>
-  <body class="text-gray-100">
+</head>
+<body class="text-gray-100">
     <!-- Palette: Energetic & Playful (#00A6A6, #77D977, #F2E63D, #F29F05, #F27405) - Adapted for Dark Mode -->
-
-    <header
-      class="bg-[#121220] text-white p-8 text-center shadow-lg rounded-b-xl"
-    >
-      <h1 class="text-4xl md:text-5xl font-bold mb-2">
-        การจัดการการปฏิบัติการ การจัดการโลจิสติกส์ และโซ่อุปทาน (บทที่ 1)
-      </h1>
-      <p class="text-lg md:text-xl text-[#77D977]">
-        กุญแจสู่ความสำเร็จทางธุรกิจในยุคดิจิทัล
-      </p>
+    
+    <header class="bg-[#121220] text-white p-8 text-center shadow-lg rounded-b-xl">
+        <h1 class="text-4xl md:text-5xl font-bold mb-2">เจาะลึกการจัดการปฏิบัติการและโซ่อุปทาน</h1>
+        <p class="text-lg md:text-xl text-[#77D977]">กุญแจสู่ความสำเร็จทางธุรกิจในยุคดิจิทัล</p>
     </header>
 
     <main class="container mx-auto p-4 md:p-8">
-      <section id="foundations" class="mb-12">
-        <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">
-          รากฐานสำคัญของการผลิต
-        </h2>
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-          <!-- สินค้า (Goods) vs. บริการ (Services) -->
-          <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6 flex flex-col">
-            <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">
-              สินค้า (Goods) vs. บริการ (Services)
-            </h3>
-            <p class="mb-4 text-gray-200 flex-grow">
-              หัวใจของการผลิตคือการสร้างสรรค์สิ่งที่มีมูลค่า แต่ "สินค้า" และ
-              "บริการ" มีความแตกต่างกันอย่างชัดเจน
-              ซึ่งส่งผลโดยตรงต่อวิธีการจัดการ
-            </p>
-            <div
-              class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center mt-auto"
-            >
-              <div class="bg-[#3a3a5a] p-4 rounded-lg shadow">
-                <span class="text-5xl">📦</span>
-                <p class="font-bold mt-2">สินค้า</p>
-                <ul
-                  class="text-sm text-gray-300 list-disc list-inside text-left mx-auto max-w-[fit-content]"
-                >
-                  <li>จับต้องได้</li>
-                  <li>เก็บสต็อกได้</li>
-                  <li>ขายซ้ำได้</li>
-                  <li>คุณภาพวัดง่าย</li>
-                  <li>ผลิตแยกจากขาย</li>
-                  <li>ง่ายต่ออัตโนมัติ</li>
+        
+        <section id="foundations" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">รากฐานสำคัญของการผลิต</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                <!-- สินค้า (Goods) vs. บริการ (Services) -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">สินค้า (Goods) vs. บริการ (Services)</h3>
+                    <p class="mb-4 text-gray-200 flex-grow">หัวใจของการผลิตคือการสร้างสรรค์สิ่งที่มีมูลค่า แต่ "สินค้า" และ "บริการ" มีความแตกต่างกันอย่างชัดเจน ซึ่งส่งผลโดยตรงต่อวิธีการจัดการ</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center mt-auto">
+                        <div class="bg-[#3a3a5a] p-4 rounded-lg shadow">
+                            <span class="text-5xl">📦</span>
+                            <p class="font-bold mt-2">สินค้า</p>
+                            <ul class="text-sm text-gray-300 list-disc list-inside text-left mx-auto max-w-[fit-content]">
+                                <li>จับต้องได้</li>
+                                <li>เก็บสต็อกได้</li>
+                                <li>ขายซ้ำได้</li>
+                                <li>คุณภาพวัดง่าย</li>
+                                <li>ผลิตแยกจากขาย</li>
+                                <li>ง่ายต่ออัตโนมัติ</li>
+                            </ul>
+                            <p class="text-xs text-gray-400 mt-2">ตัวอย่าง: โทรศัพท์มือถือ, เสื้อผ้า</p>
+                        </div>
+                        <div class="bg-[#3a3a5a] p-4 rounded-lg shadow">
+                            <span class="text-5xl">🤝</span>
+                            <p class="font-bold mt-2">บริการ</p>
+                            <ul class="text-sm text-gray-300 list-disc list-inside text-left mx-auto max-w-[fit-content]">
+                                <li>จับต้องไม่ได้</li>
+                                <li>เก็บสต็อกไม่ได้</li>
+                                <li>ผลิตและบริโภคพร้อมกัน</li>
+                                <li>คุณภาพวัดยาก</li>
+                                <li>การขายเป็นส่วนหนึ่ง</li>
+                                <li>ยากต่ออัตโนมัติ</li>
+                            </ul>
+                            <p class="text-xs text-gray-400 mt-2">ตัวอย่าง: การตัดผม, การปรึกษา</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- ระบบการผลิต (Production System) -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6 flex flex-col">
+                    <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">ระบบการผลิต (Production System)</h3>
+                    <p class="mb-4 text-gray-200 flex-grow">ทุกการผลิตคือกระบวนการเปลี่ยน "ปัจจัยนำเข้า" ให้กลายเป็น "ผลผลิต" ที่มีมูลค่าสูงขึ้น โดยมีข้อมูลป้อนกลับเพื่อการพัฒนาอย่างต่อเนื่อง</p>
+                    <div class="flex flex-col items-center justify-center space-y-4 mt-auto">
+                        <div class="p-3 bg-blue-700 rounded-lg shadow w-full text-center">
+                            <p class="font-bold">Input (ปัจจัยนำเข้า)</p>
+                            <p class="text-xs text-gray-300">วัตถุดิบ, แรงงาน, เครื่องจักร, เงินทุน, การจัดการ, พลังงาน, เทคโนโลยี</p>
+                        </div>
+                        <div class="flow-arrow">▼</div>
+                        <div class="p-3 bg-green-700 rounded-lg shadow w-full text-center">
+                            <p class="font-bold">Process (กระบวนการแปรรูป)</p>
+                            <p class="text-xs text-gray-300">การแปรรูป, การประกอบ, การตรวจสอบคุณภาพ</p>
+                        </div>
+                        <div class="flow-arrow">▼</div>
+                        <div class="p-3 bg-yellow-700 rounded-lg shadow w-full text-center">
+                            <p class="font-bold">Output (ผลผลิต)</p>
+                            <p class="text-xs text-gray-300">สินค้า หรือ บริการ</p>
+                        </div>
+                        <p class="text-center mt-3 text-sm text-gray-400">วนลูปด้วยข้อมูลป้อนกลับ (Feedback) เพื่อการปรับปรุง</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- New Section for 4M -->
+            <div class="bg-[#2a2a4a] rounded-lg shadow-md p-8 mt-8">
+                <p class="exam-focus">จุดเน้นออกสอบ</p>
+                <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">4M: ปัจจัยสำคัญในการผลิต</h3>
+                <p class="text-center mb-6 text-gray-200">4M คือองค์ประกอบหลักที่ผู้จัดการฝ่ายปฏิบัติการต้องบริหารจัดการอย่างมีประสิทธิภาพเพื่อขับเคลื่อนกระบวนการผลิต</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <div class="p-4 bg-gray-700 rounded-lg shadow">
+                        <span class="text-5xl">👨‍🏭</span>
+                        <p class="font-bold mt-2 text-lg text-gray-100">Man (คน)</p>
+                        <p class="text-sm text-gray-300">แรงงาน, ทักษะ, การฝึกอบรม, ขวัญกำลังใจ</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: พนักงานในสายการผลิต, ช่างเทคนิค, ผู้ให้บริการลูกค้า</p>
+                    </div>
+                    <div class="p-4 bg-gray-700 rounded-lg shadow">
+                        <span class="text-5xl">⚙️</span>
+                        <p class="font-bold mt-2 text-lg text-gray-100">Machine (เครื่องจักร)</p>
+                        <p class="text-sm text-gray-300">อุปกรณ์, เครื่องมือ, เทคโนโลยี, การบำรุงรักษา</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: เครื่องจักรในโรงงาน, คอมพิวเตอร์, ระบบอัตโนมัติ</p>
+                    </div>
+                    <div class="p-4 bg-gray-700 rounded-lg shadow">
+                        <span class="text-5xl">📦</span>
+                        <p class="font-bold mt-2 text-lg text-gray-100">Material (วัตถุดิบ)</p>
+                        <p class="text-sm text-gray-300">วัตถุดิบ, ชิ้นส่วน, สินค้ากึ่งสำเร็จรูป, การจัดการสต็อก</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: เหล็ก, พลาสติก, ผ้า, ส่วนประกอบอิเล็กทรอนิกส์</p>
+                    </div>
+                    <div class="p-4 bg-gray-700 rounded-lg shadow">
+                        <span class="text-5xl">📝</span>
+                        <p class="font-bold mt-2 text-lg text-gray-100">Method (วิธีการ)</p>
+                        <p class="text-sm text-gray-300">กระบวนการ, ขั้นตอน, มาตรฐาน, การปรับปรุง</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: ขั้นตอนการผลิต, ระบบควบคุมคุณภาพ, วิธีการให้บริการ</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="disciplines" class="mb-12 bg-[#2a2a4a] rounded-lg shadow-md p-8">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">ศาสตร์หลักในการจัดการ</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8 text-gray-200">การจัดการปฏิบัติการ, โลจิสติกส์, และโซ่อุปทาน เป็นสามส่วนที่ทำงานเกี่ยวเนื่องกันเพื่อสร้างความได้เปรียบในการแข่งขัน</p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-4 text-center relative">
+                <!-- Supply Chain Management -->
+                <div class="border-4 border-[#F29F05] p-6 rounded-full w-60 h-60 flex flex-col justify-center shadow-lg bg-[#3a3a5a] relative z-30">
+                    <h3 class="text-xl font-bold">Supply Chain Management</h3>
+                    <p class="text-sm text-gray-300">การบูรณาการทั้งเครือข่าย ตั้งแต่ Supplier ถึง Customer</p>
+                    <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: การประสานงานกับโรงงานผลิต, ผู้ขนส่ง, ร้านค้าปลีก, และผู้จัดหาวัตถุดิบ</p>
+                </div>
+                <!-- Logistics Management -->
+                <div class="border-4 border-[#00A6A6] p-6 rounded-full w-48 h-48 flex flex-col justify-center shadow-md md:-ml-12 bg-[#3a3a5a] relative z-20">
+                    <h3 class="text-lg font-bold">Logistics Management</h3>
+                    <p class="text-sm text-gray-300">การเคลื่อนย้ายและจัดเก็บสินค้าอย่างมีประสิทธิภาพ</p>
+                    <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: การจัดการคลังสินค้า, การวางแผนเส้นทางขนส่ง</p>
+                </div>
+                <!-- Operations Management -->
+                <div class="border-4 border-[#77D977] p-6 rounded-full w-40 h-40 flex flex-col justify-center shadow-sm md:-ml-12 bg-[#3a3a5a] relative z-10">
+                    <h3 class="text-base font-bold">Operations Management</h3>
+                    <p class="text-sm text-gray-300">กระบวนการสร้างมูลค่า</p>
+                    <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: การควบคุมการผลิต, การออกแบบบริการ</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="evolution" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">วิวัฒนาการของโลจิสติกส์</h2>
+            <div class="relative wrap overflow-hidden p-4 h-full">
+                <div class="border-2-2 absolute border-opacity-20 border-gray-500 h-full border" style="left: 50%"></div>
+                <!-- Timeline Item 1 -->
+                <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+                    </div>
+                    <div class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-3 font-bold text-gray-100 text-xl">1950-1964: จุดเริ่มต้น</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">ยุคผลิตเป็นหลัก ต้นทุนขนส่งสูง เริ่มหาทางเลือกใหม่ๆ</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: การจัดส่งเสบียงทหาร, การผลิตจำนวนมาก</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 2 -->
+                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">2</h1>
+                    </div>
+                    <div class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-3 font-bold text-gray-100 text-xl">1965-1979: เข้าสู่ระบบ</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">ลูกค้าต้องการบริการสูงขึ้น เริ่มวิเคราะห์ต้นทุนและรายได้</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: การนำระบบ MRP มาใช้, การพัฒนาศูนย์กระจายสินค้า</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 3 -->
+                <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
+                    </div>
+                    <div class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-3 font-bold text-gray-100 text-xl">1980-1990: ยุคแข่งขัน</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">เกิดพันธมิตรทางธุรกิจ ให้ความสำคัญกับ Supply Chain มากขึ้น</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: บริษัทรถยนต์ร่วมมือกับผู้ผลิตชิ้นส่วน, การขยายธุรกิจข้ามชาติ</p>
+                    </div>
+                </div>
+                <!-- Timeline Item 4 -->
+                <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                    <div class="order-1 w-5/12"></div>
+                    <div class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full">
+                        <h1 class="mx-auto font-semibold text-lg text-white">4</h1>
+                    </div>
+                    <div class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4">
+                        <h3 class="mb-3 font-bold text-gray-100 text-xl">1990-ปัจจุบัน: ยุค IT</h3>
+                        <p class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100">ใช้เทคโนโลยีสารสนเทศ (EDI) เพิ่มความเร็วและลดข้อผิดพลาด</p>
+                        <p class="text-xs text-gray-400 mt-1">ตัวอย่าง: ระบบติดตามสินค้าแบบเรียลไทม์ (GPS), E-commerce, Big Data</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="decisions" class="mb-12 bg-[#2a2a4a] rounded-lg shadow-md p-8">
+            <p class="exam-focus">จุดเน้นออกสอบ</p>
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#F27405]">10 การตัดสินใจสำคัญของผู้จัดการฝ่ายปฏิบัติการ</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8 text-gray-200">ความสำเร็จของการปฏิบัติการขึ้นอยู่กับการตัดสินใจใน 10 ด้านหลักเหล่านี้</p>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center">
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">🎨</span> <p class="font-bold mt-2 text-sm text-gray-100">ออกแบบสินค้า/บริการ</p><p class="text-xs text-gray-400 mt-1">กำหนดฟังก์ชันมือถือ, ออกแบบเมนูร้านอาหาร</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">⭐</span> <p class="font-bold mt-2 text-sm text-gray-100">จัดการคุณภาพ</p><p class="text-xs text-gray-400 mt-1">ตรวจสอบสินค้าก่อนส่ง, อบรมพนักงานบริการ</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">⚙️</span> <p class="font-bold mt-2 text-sm text-gray-100">ออกแบบกระบวนการ & กำลังการผลิต</p><p class="text-xs text-gray-400 mt-1">วางแผนสายการผลิต, กำหนดขั้นตอนบริการ</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">📍</span> <p class="font-bold mt-2 text-sm text-gray-100">เลือกทำเล</p><p class="text-xs text-gray-400 mt-1">เลือกที่ตั้งโรงงาน, เลือกทำเลร้านค้า</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">🏢</span> <p class="font-bold mt-2 text-sm text-gray-100">วางผังสถานประกอบการ</p><p class="text-xs text-gray-400 mt-1">จัดวางเครื่องจักร, จัดเรียงแผนกในห้าง</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">👥</span> <p class="font-bold mt-2 text-sm text-gray-100">ทรัพยากรมนุษย์ & ออกแบบงาน</p><p class="text-xs text-gray-400 mt-1">จัดทีมงาน, กำหนดค่าจ้างและสวัสดิการ</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">🔗</span> <p class="font-bold mt-2 text-sm text-gray-100">จัดการโซ่อุปทาน</p><p class="text-xs text-gray-400 mt-1">เลือกผู้ผลิตวัตถุดิบ, บริหารสัมพันธ์ซัพพลายเออร์</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">📦</span> <p class="font-bold mt-2 text-sm text-gray-100">จัดการสินค้าคงคลัง & JIT</p><p class="text-xs text-gray-400 mt-1">กำหนดจำนวนสต็อก, จัดการคลังวัตถุดิบ</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">🗓️</span> <p class="font-bold mt-2 text-sm text-gray-100">จัดตารางเวลา</p><p class="text-xs text-gray-400 mt-1">วางแผนการผลิตรายวัน, จัดตารางนัดหมาย</p></div>
+                <div class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"> <span class="text-4xl">🔧</span> <p class="font-bold mt-2 text-sm text-gray-100">บำรุงรักษา</p><p class="text-xs text-gray-400 mt-1">ซ่อมบำรุงเครื่องจักรตามแผน, ดูแลสถานที่</p></div>
+            </div>
+        </section>
+
+        <section id="productivity" class="mb-12">
+            <p class="exam-focus">จุดเน้นออกสอบ</p>
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">การวัดความสำเร็จ: ผลิตภาพ (Productivity)</h2>
+            <div class="bg-[#2a2a4a] rounded-lg shadow-md p-8 mb-8 text-center">
+                <h3 class="text-2xl font-bold mb-2 text-[#00A6A6]">Productivity = Output / Input</h3>
+                <p class="text-gray-200">ผลิตภาพคือมาตรวัดประสิทธิภาพที่สำคัญที่สุด ยิ่งค่าสูงยิ่งดี ซึ่งสามารถปรับปรุงได้โดยการ <span class="font-bold text-[#F2E63D]">"ลด Input"</span> (ลดปัจจัยนำเข้า) ในขณะที่ผลผลิตคงเดิม หรือ <span class="font-bold text-[#F2E63D]">"เพิ่ม Output"</span> (เพิ่มผลผลิต) ในขณะที่ปัจจัยนำเข้าคงที่</p>
+                <p class="text-sm text-gray-400 mt-2">ตัวอย่าง: หากผลิตเสื้อได้ 100 ตัว โดยใช้ผ้า 50 เมตร (Output/Input = 100/50 = 2 ตัว/เมตร)</p>
+            </div>
+
+            <!-- Calculation Examples -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Single Factor Productivity Calculation -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
+                    <p class="exam-focus">วิธีคำนวณ</p>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">การวัดผลิตภาพแบบปัจจัยเดี่ยว (Single Factor Productivity)</h3>
+                    <p class="text-center mb-4 text-sm text-gray-200">เป็นการแสดงสัดส่วนของการใช้ทรัพยากร (ปัจจัยนำเข้า) เพียงหนึ่งอย่าง เพื่อการผลิตสินค้าหรือบริการ (ปัจจัยนำออก)</p>
+                    <div class="calculation-box">
+                        <p class="text-lg font-bold text-gray-100 mb-2">สูตร:</p>
+                        <p class="calculation-formula">ผลิตภาพ = หน่วยของผลผลิตที่ผลิตได้ / ปัจจัยนำเข้าที่ใช้</p>
+                        <p class="text-lg font-bold text-gray-100 mt-4 mb-2">ตัวอย่าง (จากเอกสาร):</p>
+                        <p class="text-base text-gray-200">▪ ผลผลิตที่ผลิตได้ = <strong class="text-[#F2E63D]">1,000 หน่วย</strong></p>
+                        <p class="text-base text-gray-200">▪ จำนวนชั่วโมงแรงงานที่ใช้ = <strong class="text-[#F2E63D]">250 ชั่วโมง</strong></p>
+                        <p class="calculation-formula mt-4">ผลิตภาพ = 1,000 / 250</p>
+                        <p class="calculation-formula">= <strong class="text-[#F2E63D]">4 หน่วยต่อชั่วโมงแรงงาน</strong></p>
+                        <p class="text-lg font-bold text-gray-100 mt-4 mb-2">การคำนวณ % การเปลี่ยนแปลง:</p>
+                        <p class="percentage-calculation">
+                            % การเปลี่ยนแปลง = ((ผลิตภาพใหม่ - ผลิตภาพเดิม) / ผลิตภาพเดิม) * 100
+                        </p>
+                        <p class="percentage-calculation">
+                            % การเปลี่ยนแปลง = ((0.4375 - 0.25) / 0.25) * 100 = 75%
+                        </p>
+                        <p class="text-sm text-gray-400 mt-2">
+                            (จากเอกสาร: ผลิตภาพด้านแรงงานเพิ่มขึ้น = 1.75 = 75%)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Multifactor Productivity Calculation -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
+                    <p class="exam-focus">วิธีคำนวณ</p>
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">การวัดผลิตภาพแบบพหุปัจจัย (Multifactor Productivity)</h3>
+                    <p class="text-center mb-4 text-sm text-gray-200">เป็นการแสดงสัดส่วนของการใช้ทรัพยากร (ปัจจัยนำเข้า) หลายอย่าง หรือทั้งหมด เพื่อการผลิตสินค้าหรือบริการ (ปัจจัยนำออก)</p>
+                    <div class="calculation-box">
+                        <p class="text-lg font-bold text-gray-100 mb-2">สูตร:</p>
+                        <p class="calculation-formula">ผลิตภาพ = ผลผลิต / (แรงงาน + วัตถุดิบ + พลังงาน + ทุน + อื่นๆ)</p>
+                        <p class="text-lg font-bold text-gray-100 mt-4 mb-2">ตัวอย่าง (จากเอกสาร):</p>
+                        <p class="text-base text-gray-200">
+                            <span class="font-bold text-[#F2E63D]">ระบบเดิม:</span><br>
+                            - ผลผลิต: 8 รายการ<br>
+                            - ค่าจ้างแรงงาน: $640/วัน (4 คน x 8 ชม/คน x ค่าจ้าง)<br>
+                            - ค่าใช้จ่ายดำเนินการ: $400/วัน<br>
+                            <span class="calculation-formula">ผลิตภาพ = 8 / (640 + 400) = 8 / 1040 = <strong class="text-[#F2E63D]">0.0077 รายการ/ดอลลาร์</strong></span>
+                        </p>
+                        <p class="text-base text-gray-200 mt-4">
+                            <span class="font-bold text-[#F2E63D]">ระบบใหม่ (มีคอมพิวเตอร์):</span><br>
+                            - ผลผลิต: 14 รายการ<br>
+                            - ค่าจ้างแรงงาน: $640/วัน (เท่าเดิม)<br>
+                            - ค่าใช้จ่ายดำเนินการ: $800/วัน<br>
+                            <span class="calculation-formula">ผลิตภาพ = 14 / (640 + 800) = 14 / 1440 = <strong class="text-[#F2E63D]">0.0097 รายการ/ดอลลาร์</strong></span>
+                        </p>
+                        <p class="text-lg font-bold text-gray-100 mt-4 mb-2">การคำนวณ % การเปลี่ยนแปลง:</p>
+                        <p class="percentage-calculation">
+                            % การเปลี่ยนแปลง = ((ผลิตภาพใหม่ - ผลิตภาพเดิม) / ผลิตภาพเดิม) * 100
+                        </p>
+                        <p class="percentage-calculation">
+                            % การเปลี่ยนแปลง = ((0.0097 - 0.0077) / 0.0077) * 100 ≈ 25.97%
+                        </p>
+                        <p class="text-sm text-gray-400 mt-2">
+                            (จากเอกสาร: ผลิตภาพแบบพหุปัจจัยเพิ่มขึ้น = 1.259 = 25.9%)
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Labor Productivity Chart -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">การเปรียบเทียบผลิตภาพแรงงาน</h3>
+                    <p class="text-center mb-4 text-sm text-gray-200">การนำระบบใหม่เข้ามาช่วย เพิ่มผลิตภาพของพนักงานได้อย่างมหาศาล</p>
+                    <p class="text-xs text-gray-400 mb-2">ตัวอย่าง: ระบบเดิมพนักงาน 1 คนผลิตได้ 0.25 รายการ/ชั่วโมง แต่ระบบใหม่ผลิตได้ 0.4375 รายการ/ชั่วโมง</p>
+                    <div class="chart-container">
+                        <canvas id="laborProductivityChart"></canvas>
+                    </div>
+                </div>
+                <!-- Multifactor Productivity Chart -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">การเปรียบเทียบผลิตภาพพหุปัจจัย</h3>
+                    <p class="text-center mb-4 text-sm text-gray-200">แม้ต้นทุนรวมจะสูงขึ้น แต่เมื่อเทียบกับผลผลิตที่ได้ ก็ยังถือว่าคุ้มค่าและมีผลิตภาพสูงขึ้น</p>
+                    <p class="text-xs text-gray-400 mb-2">ตัวอย่าง: ระบบเดิมได้ 0.0077 รายการ/ดอลลาร์ แต่ระบบใหม่ได้ 0.0097 รายการ/ดอลลาร์</p>
+                    <div class="chart-container">
+                        <canvas id="multifactorProductivityChart"></canvas>
+                    </div>
+                </div>
+                <!-- 3 Variables of Productivity Chart -->
+                <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6 col-span-1 md:col-span-2">
+                    <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">3 ตัวแปรสำคัญของผลิตภาพ</h3>
+                    <p class="text-center mb-4 text-sm text-gray-200">การจัดการที่ดีเป็นปัจจัยสำคัญที่สุดในการขับเคลื่อนผลิตภาพ ตามมาด้วยการพัฒนาแรงงานและการลงทุนที่เหมาะสม</p>
+                    <p class="text-xs text-gray-400 mb-2">ตัวอย่าง: <span class="font-bold text-gray-300">การจัดการ</span> (เช่น การนำเทคโนโลยีใหม่, การปรับปรุงกระบวนการ), <span class="font-bold text-gray-300">แรงงาน</span> (เช่น การฝึกอบรมทักษะ, การดูแลสุขภาพ), <span class="font-bold text-gray-300">เงินทุน</span> (เช่น การซื้อเครื่องจักรใหม่, การลงทุนในระบบ IT)</p>
+                    <div class="chart-container h-80 md:h-96">
+                        <canvas id="productivityVariablesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="trends" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">ตัวแปรสู่ความสำเร็จและเทรนด์แห่งอนาคต</h2>
+            <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
+                <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">แนวโน้มใหม่ในการบริหาร</h3>
+                <ul class="list-disc list-inside space-y-2 text-gray-200">
+                    <li><span class="font-bold">Global Focus:</span> การมุ่งเน้นตลาดโลก <span class="text-xs text-gray-400">(เช่น บริษัทขยายตลาดไปต่างประเทศ, การผลิตในหลายประเทศ)</span></li>
+                    <li><span class="font-bold">JIT & Supply Chain Partnership:</span> การส่งมอบแบบทันเวลาและคู่ค้าในโซ่อุปทาน <span class="text-xs text-gray-400">(เช่น โรงงานผลิตรถยนต์ได้รับชิ้นส่วนเมื่อต้องการใช้ทันที, การสร้างความสัมพันธ์ระยะยาวกับซัพพลายเออร์)</span></li>
+                    <li><span class="font-bold">Rapid Product Development:</span> การพัฒนาผลิตภัณฑ์ที่รวดเร็ว <span class="text-xs text-gray-400">(เช่น การออกรุ่นโทรศัพท์ใหม่ทุกปี, การพัฒนาวัคซีนอย่างเร่งด่วน)</span></li>
+                    <li><span class="font-bold">Mass Customization:</span> การผลิตตามใจลูกค้าเฉพาะราย <span class="text-xs text-gray-400">(เช่น การสั่งทำรองเท้าตามแบบที่ลูกค้าออกแบบ, การปรับแต่งรถยนต์ตามความต้องการ)</span></li>
+                    <li><span class="font-bold">Employee Empowerment:</span> การมอบอำนาจให้พนักงาน <span class="text-xs text-gray-400">(เช่น พนักงานตัดสินใจแก้ปัญหาให้ลูกค้าได้เองโดยไม่ต้องรออนุมัติ)</span></li>
+                    <li><span class="font-bold">Sustainability & Ethics:</span> การผลิตที่ยั่งยืนและมีจริยธรรม <span class="text-xs text-gray-400">(เช่น การใช้พลังงานหมุนเวียน, การลดของเสีย, การไม่ใช้แรงงานเด็ก, การดูแลสภาพแวดล้อมการทำงาน)</span></li>
                 </ul>
-                <p class="text-xs text-gray-400 mt-2">
-                  ตัวอย่าง: โทรศัพท์มือถือ, เสื้อผ้า
-                </p>
-              </div>
-              <div class="bg-[#3a3a5a] p-4 rounded-lg shadow">
-                <span class="text-5xl">🤝</span>
-                <p class="font-bold mt-2">บริการ</p>
-                <ul
-                  class="text-sm text-gray-300 list-disc list-inside text-left mx-auto max-w-[fit-content]"
-                >
-                  <li>จับต้องไม่ได้</li>
-                  <li>เก็บสต็อกไม่ได้</li>
-                  <li>ผลิตและบริโภคพร้อมกัน</li>
-                  <li>คุณภาพวัดยาก</li>
-                  <li>การขายเป็นส่วนหนึ่ง</li>
-                  <li>ยากต่ออัตโนมัติ</li>
-                </ul>
-                <p class="text-xs text-gray-400 mt-2">
-                  ตัวอย่าง: การตัดผม, การปรึกษา
-                </p>
-              </div>
             </div>
-          </div>
-          <!-- ระบบการผลิต (Production System) -->
-          <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6 flex flex-col">
-            <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">
-              ระบบการผลิต (Production System)
-            </h3>
-            <p class="mb-4 text-gray-200 flex-grow">
-              ทุกการผลิตคือกระบวนการเปลี่ยน "ปัจจัยนำเข้า" ให้กลายเป็น "ผลผลิต"
-              ที่มีมูลค่าสูงขึ้น โดยมีข้อมูลป้อนกลับเพื่อการพัฒนาอย่างต่อเนื่อง
-            </p>
-            <div
-              class="flex flex-col items-center justify-center space-y-4 mt-auto"
-            >
-              <div class="p-3 bg-blue-700 rounded-lg shadow w-full text-center">
-                <p class="font-bold">Input (ปัจจัยนำเข้า)</p>
-                <p class="text-xs text-gray-300">
-                  วัตถุดิบ, แรงงาน, เครื่องจักร, เงินทุน, การจัดการ, พลังงาน,
-                  เทคโนโลยี
-                </p>
-              </div>
-              <div class="flow-arrow">▼</div>
-              <div
-                class="p-3 bg-green-700 rounded-lg shadow w-full text-center"
-              >
-                <p class="font-bold">Process (กระบวนการแปรรูป)</p>
-                <p class="text-xs text-gray-300">
-                  การแปรรูป, การประกอบ, การตรวจสอบคุณภาพ
-                </p>
-              </div>
-              <div class="flow-arrow">▼</div>
-              <div
-                class="p-3 bg-yellow-700 rounded-lg shadow w-full text-center"
-              >
-                <p class="font-bold">Output (ผลผลิต)</p>
-                <p class="text-xs text-gray-300">สินค้า หรือ บริการ</p>
-              </div>
-              <p class="text-center mt-3 text-sm text-gray-400">
-                วนลูปด้วยข้อมูลป้อนกลับ (Feedback) เพื่อการปรับปรุง
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
 
-      <section
-        id="disciplines"
-        class="mb-12 bg-[#2a2a4a] rounded-lg shadow-md p-8"
-      >
-        <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">
-          ศาสตร์หลักในการจัดการ
-        </h2>
-        <p class="text-center max-w-3xl mx-auto mb-8 text-gray-200">
-          การจัดการปฏิบัติการ, โลจิสติกส์, และโซ่อุปทาน
-          เป็นสามส่วนที่ทำงานเกี่ยวเนื่องกันเพื่อสร้างความได้เปรียบในการแข่งขัน
-        </p>
-        <div
-          class="flex flex-col md:flex-row justify-center items-center gap-4 text-center relative"
-        >
-          <!-- Supply Chain Management -->
-          <div
-            class="border-4 border-[#F29F05] p-6 rounded-full w-60 h-60 flex flex-col justify-center shadow-lg bg-[#3a3a5a] relative z-30"
-          >
-            <h3 class="text-xl font-bold">Supply Chain Management</h3>
-            <p class="text-sm text-gray-300">
-              การบูรณาการทั้งเครือข่าย ตั้งแต่ Supplier ถึง Customer
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              ตัวอย่าง: การประสานงานกับโรงงานผลิต, ผู้ขนส่ง, ร้านค้าปลีก,
-              และผู้จัดหาวัตถุดิบ
-            </p>
-          </div>
-          <!-- Logistics Management -->
-          <div
-            class="border-4 border-[#00A6A6] p-6 rounded-full w-48 h-48 flex flex-col justify-center shadow-md md:-ml-12 bg-[#3a3a5a] relative z-20"
-          >
-            <h3 class="text-lg font-bold">Logistics Management</h3>
-            <p class="text-sm text-gray-300">
-              การเคลื่อนย้ายและจัดเก็บสินค้าอย่างมีประสิทธิภาพ
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              ตัวอย่าง: การจัดการคลังสินค้า, การวางแผนเส้นทางขนส่ง
-            </p>
-          </div>
-          <!-- Operations Management -->
-          <div
-            class="border-4 border-[#77D977] p-6 rounded-full w-40 h-40 flex flex-col justify-center shadow-sm md:-ml-12 bg-[#3a3a5a] relative z-10"
-          >
-            <h3 class="text-base font-bold">Operations Management</h3>
-            <p class="text-sm text-gray-300">กระบวนการสร้างมูลค่า</p>
-            <p class="text-xs text-gray-400 mt-1">
-              ตัวอย่าง: การควบคุมการผลิต, การออกแบบบริการ
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="evolution" class="mb-12">
-        <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">
-          วิวัฒนาการของโลจิสติกส์
-        </h2>
-        <div class="relative wrap overflow-hidden p-4 h-full">
-          <div
-            class="border-2-2 absolute border-opacity-20 border-gray-500 h-full border"
-            style="left: 50%"
-          ></div>
-          <!-- Timeline Item 1 -->
-          <div
-            class="mb-8 flex justify-between items-center w-full right-timeline"
-          >
-            <div class="order-1 w-5/12"></div>
-            <div
-              class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full"
-            >
-              <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+        <section id="ethics" class="bg-[#2a2a4a] rounded-lg shadow-md p-8">
+            <h2 class="text-3xl font-bold text-center mb-2 text-[#F27405]">จริยธรรมและความรับผิดชอบต่อสังคม</h2>
+            <p class="text-center max-w-3xl mx-auto mb-8 text-gray-200">องค์กรที่ประสบความสำเร็จในระยะยาว ต้องสร้างสมดุลและตอบสนองต่อผู้มีส่วนได้ส่วนเสีย (Stakeholders) ทุกฝ่าย</p>
+            <div class="relative flex flex-col items-center">
+                <div class="p-6 bg-[#00A6A6] text-white rounded-full z-10 shadow-lg">
+                    <p class="text-xl font-bold">องค์กร</p>
+                </div>
+                <div class="grid grid-cols-2 md:grid-cols-3 gap-8 mt-8 w-full max-w-4xl">
+                    <div class="text-center p-4 bg-gray-700 rounded-lg">👥<p class="font-bold text-gray-100">ลูกค้า</p><p class="text-xs text-gray-400 mt-1">สินค้าปลอดภัย, บริการเป็นธรรม</p></div>
+                    <div class="text-center p-4 bg-gray-700 rounded-lg">🚚<p class="font-bold text-gray-100">Suppliers</p><p class="text-xs text-gray-400 mt-1">จ่ายเงินตรงเวลา, สร้างความสัมพันธ์ที่ดี</p></div>
+                    <div class="text-center p-4 bg-gray-700 rounded-lg">💰<p class="font-bold text-gray-100">เจ้าของ</p><p class="text-xs text-gray-400 mt-1">สร้างผลกำไรที่ยั่งยืน, บริหารความเสี่ยง</p></div>
+                    <div class="text-center p-4 bg-gray-700 rounded-lg">🤝<p class="font-bold text-gray-100">พนักงาน</p><p class="text-xs text-gray-400 mt-1">สวัสดิการดี, สภาพแวดล้อมปลอดภัย</p></div>
+                    <div class="text-center p-4 bg-gray-700 rounded-lg">�<p class="font-bold text-gray-100">ผู้ให้กู้</p><p class="text-xs text-gray-400 mt-1">ชำระหนี้คืนตามกำหนด, รายงานการเงินโปร่งใส</p></div>
+                    <div class="text-center p-4 bg-gray-700 rounded-lg">🏛️<p class="font-bold text-gray-100">รัฐบาล</p><p class="text-xs text-gray-400 mt-1">เสียภาษีถูกต้อง, ปฏิบัติตามกฎหมาย</p></div>
+                </div>
             </div>
-            <div
-              class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4"
-            >
-              <h3 class="mb-3 font-bold text-gray-100 text-xl">
-                1950-1964: จุดเริ่มต้น
-              </h3>
-              <p
-                class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100"
-              >
-                ยุคผลิตเป็นหลัก ต้นทุนขนส่งสูง เริ่มหาทางเลือกใหม่ๆ
-              </p>
-              <p class="text-xs text-gray-400 mt-1">
-                ตัวอย่าง: การจัดส่งเสบียงทหาร, การผลิตจำนวนมาก
-              </p>
-            </div>
-          </div>
-          <!-- Timeline Item 2 -->
-          <div
-            class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"
-          >
-            <div class="order-1 w-5/12"></div>
-            <div
-              class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full"
-            >
-              <h1 class="mx-auto font-semibold text-lg text-white">2</h1>
-            </div>
-            <div
-              class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4"
-            >
-              <h3 class="mb-3 font-bold text-gray-100 text-xl">
-                1965-1979: เข้าสู่ระบบ
-              </h3>
-              <p
-                class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100"
-              >
-                ลูกค้าต้องการบริการสูงขึ้น เริ่มวิเคราะห์ต้นทุนและรายได้
-              </p>
-              <p class="text-xs text-gray-400 mt-1">
-                ตัวอย่าง: การนำระบบ MRP มาใช้, การพัฒนาศูนย์กระจายสินค้า
-              </p>
-            </div>
-          </div>
-          <!-- Timeline Item 3 -->
-          <div
-            class="mb-8 flex justify-between items-center w-full right-timeline"
-          >
-            <div class="order-1 w-5/12"></div>
-            <div
-              class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full"
-            >
-              <h1 class="mx-auto font-semibold text-lg text-white">3</h1>
-            </div>
-            <div
-              class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4"
-            >
-              <h3 class="mb-3 font-bold text-gray-100 text-xl">
-                1980-1990: ยุคแข่งขัน
-              </h3>
-              <p
-                class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100"
-              >
-                เกิดพันธมิตรทางธุรกิจ ให้ความสำคัญกับ Supply Chain มากขึ้น
-              </p>
-              <p class="text-xs text-gray-400 mt-1">
-                ตัวอย่าง: บริษัทรถยนต์ร่วมมือกับผู้ผลิตชิ้นส่วน,
-                การขยายธุรกิจข้ามชาติ
-              </p>
-            </div>
-          </div>
-          <!-- Timeline Item 4 -->
-          <div
-            class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline"
-          >
-            <div class="order-1 w-5/12"></div>
-            <div
-              class="z-20 flex items-center order-1 bg-[#F29F05] shadow-xl w-8 h-8 rounded-full"
-            >
-              <h1 class="mx-auto font-semibold text-lg text-white">4</h1>
-            </div>
-            <div
-              class="order-1 bg-gray-700 rounded-lg shadow-xl w-5/12 px-6 py-4"
-            >
-              <h3 class="mb-3 font-bold text-gray-100 text-xl">
-                1990-ปัจจุบัน: ยุค IT
-              </h3>
-              <p
-                class="text-sm leading-snug tracking-wide text-gray-300 text-opacity-100"
-              >
-                ใช้เทคโนโลยีสารสนเทศ (EDI) เพิ่มความเร็วและลดข้อผิดพลาด
-              </p>
-              <p class="text-xs text-gray-400 mt-1">
-                ตัวอย่าง: ระบบติดตามสินค้าแบบเรียลไทม์ (GPS), E-commerce, Big
-                Data
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section
-        id="decisions"
-        class="mb-12 bg-[#2a2a4a] rounded-lg shadow-md p-8"
-      >
-        <p class="exam-focus">จุดเน้นออกสอบ</p>
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#F27405]">
-          10 การตัดสินใจสำคัญของผู้จัดการฝ่ายปฏิบัติการ
-        </h2>
-        <p class="text-center max-w-3xl mx-auto mb-8 text-gray-200">
-          ความสำเร็จของการปฏิบัติการขึ้นอยู่กับการตัดสินใจใน 10 ด้านหลักเหล่านี้
-        </p>
-        <div
-          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 text-center"
-        >
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">🎨</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">
-              ออกแบบสินค้า/บริการ
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              กำหนดฟังก์ชันมือถือ, ออกแบบเมนูร้านอาหาร
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">⭐</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">จัดการคุณภาพ</p>
-            <p class="text-xs text-gray-400 mt-1">
-              ตรวจสอบสินค้าก่อนส่ง, อบรมพนักงานบริการ
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">⚙️</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">
-              ออกแบบกระบวนการ & กำลังการผลิต
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              วางแผนสายการผลิต, กำหนดขั้นตอนบริการ
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">📍</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">เลือกทำเล</p>
-            <p class="text-xs text-gray-400 mt-1">
-              เลือกที่ตั้งโรงงาน, เลือกทำเลร้านค้า
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">🏢</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">
-              วางผังสถานประกอบการ
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              จัดวางเครื่องจักร, จัดเรียงแผนกในห้าง
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">👥</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">
-              ทรัพยากรมนุษย์ & ออกแบบงาน
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              จัดทีมงาน, กำหนดค่าจ้างและสวัสดิการ
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">🔗</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">จัดการโซ่อุปทาน</p>
-            <p class="text-xs text-gray-400 mt-1">
-              เลือกผู้ผลิตวัตถุดิบ, บริหารสัมพันธ์ซัพพลายเออร์
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">📦</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">
-              จัดการสินค้าคงคลัง & JIT
-            </p>
-            <p class="text-xs text-gray-400 mt-1">
-              กำหนดจำนวนสต็อก, จัดการคลังวัตถุดิบ
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">🗓️</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">จัดตารางเวลา</p>
-            <p class="text-xs text-gray-400 mt-1">
-              วางแผนการผลิตรายวัน, จัดตารางนัดหมาย
-            </p>
-          </div>
-          <div
-            class="p-4 bg-gray-700 rounded-lg hover:shadow-lg transition-shadow"
-          >
-            <span class="text-4xl">🔧</span>
-            <p class="font-bold mt-2 text-sm text-gray-100">บำรุงรักษา</p>
-            <p class="text-xs text-gray-400 mt-1">
-              ซ่อมบำรุงเครื่องจักรตามแผน, ดูแลสถานที่
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section id="productivity" class="mb-12">
-        <p class="exam-focus">จุดเน้นออกสอบ</p>
-        <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">
-          การวัดความสำเร็จ: ผลิตภาพ (Productivity)
-        </h2>
-        <div class="bg-[#2a2a4a] rounded-lg shadow-md p-8 mb-8 text-center">
-          <h3 class="text-2xl font-bold mb-2 text-[#00A6A6]">
-            Productivity = Output / Input
-          </h3>
-          <p class="text-gray-200">
-            ผลิตภาพคือมาตรวัดประสิทธิภาพที่สำคัญที่สุด ยิ่งค่าสูงยิ่งดี
-            ซึ่งสามารถปรับปรุงได้โดยการ
-            <span class="font-bold text-[#F2E63D]">"ลด Input"</span>
-            (ลดปัจจัยนำเข้า) ในขณะที่ผลผลิตคงเดิม หรือ
-            <span class="font-bold text-[#F2E63D]">"เพิ่ม Output"</span>
-            (เพิ่มผลผลิต) ในขณะที่ปัจจัยนำเข้าคงที่
-          </p>
-          <p class="text-sm text-gray-400 mt-2">
-            ตัวอย่าง: หากผลิตเสื้อได้ 100 ตัว โดยใช้ผ้า 50 เมตร (Output/Input =
-            100/50 = 2 ตัว/เมตร)
-          </p>
-        </div>
-
-        <!-- Calculation Examples -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <!-- Single Factor Productivity Calculation -->
-          <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
-            <p class="exam-focus">วิธีคำนวณ</p>
-            <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">
-              การวัดผลิตภาพแบบปัจจัยเดี่ยว (Single Factor Productivity)
-            </h3>
-            <p class="text-center mb-4 text-sm text-gray-200">
-              เป็นการแสดงสัดส่วนของการใช้ทรัพยากร (ปัจจัยนำเข้า) เพียงหนึ่งอย่าง
-              เพื่อการผลิตสินค้าหรือบริการ (ปัจจัยนำออก)
-            </p>
-            <div class="calculation-box">
-              <p class="text-lg font-bold text-gray-100 mb-2">สูตร:</p>
-              <p class="calculation-formula">
-                ผลิตภาพ = หน่วยของผลผลิตที่ผลิตได้ / ปัจจัยนำเข้าที่ใช้
-              </p>
-              <p class="text-lg font-bold text-gray-100 mt-4 mb-2">
-                ตัวอย่าง (จากเอกสาร):
-              </p>
-              <p class="text-base text-gray-200">
-                ▪ ผลผลิตที่ผลิตได้ =
-                <strong class="text-[#F2E63D]">1,000 หน่วย</strong>
-              </p>
-              <p class="text-base text-gray-200">
-                ▪ จำนวนชั่วโมงแรงงานที่ใช้ =
-                <strong class="text-[#F2E63D]">250 ชั่วโมง</strong>
-              </p>
-              <p class="calculation-formula mt-4">ผลิตภาพ = 1,000 / 250</p>
-              <p class="calculation-formula">
-                =
-                <strong class="text-[#F2E63D]">4 หน่วยต่อชั่วโมงแรงงาน</strong>
-              </p>
-              <p class="text-lg font-bold text-gray-100 mt-4 mb-2">
-                การคำนวณ % การเปลี่ยนแปลง:
-              </p>
-              <p class="percentage-calculation">
-                % การเปลี่ยนแปลง = ((ผลิตภาพใหม่ - ผลิตภาพเดิม) / ผลิตภาพเดิม) *
-                100
-              </p>
-              <p class="percentage-calculation">
-                % การเปลี่ยนแปลง = ((0.4375 - 0.25) / 0.25) * 100 = 75%
-              </p>
-              <p class="text-sm text-gray-400 mt-2">
-                (จากเอกสาร: ผลิตภาพด้านแรงงานเพิ่มขึ้น = 1.75 = 75%)
-              </p>
-            </div>
-          </div>
-
-          <!-- Multifactor Productivity Calculation -->
-          <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
-            <p class="exam-focus">วิธีคำนวณ</p>
-            <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">
-              การวัดผลิตภาพแบบพหุปัจจัย (Multifactor Productivity)
-            </h3>
-            <p class="text-center mb-4 text-sm text-gray-200">
-              เป็นการแสดงสัดส่วนของการใช้ทรัพยากร (ปัจจัยนำเข้า) หลายอย่าง
-              หรือทั้งหมด เพื่อการผลิตสินค้าหรือบริการ (ปัจจัยนำออก)
-            </p>
-            <div class="calculation-box">
-              <p class="text-lg font-bold text-gray-100 mb-2">สูตร:</p>
-              <p class="calculation-formula">
-                ผลิตภาพ = ผลผลิต / (แรงงาน + วัตถุดิบ + พลังงาน + ทุน + อื่นๆ)
-              </p>
-              <p class="text-lg font-bold text-gray-100 mt-4 mb-2">
-                ตัวอย่าง (จากเอกสาร):
-              </p>
-              <p class="text-base text-gray-200">
-                <span class="font-bold text-[#F2E63D]">ระบบเดิม:</span><br />
-                - ผลผลิต: 8 รายการ<br />
-                - ค่าจ้างแรงงาน: $640/วัน (4 คน x 8 ชม/คน x ค่าจ้าง)<br />
-                - ค่าใช้จ่ายดำเนินการ: $400/วัน<br />
-                <span class="calculation-formula"
-                  >ผลิตภาพ = 8 / (640 + 400) = 8 / 1040 =
-                  <strong class="text-[#F2E63D]"
-                    >0.0077 รายการ/ดอลลาร์</strong
-                  ></span
-                >
-              </p>
-              <p class="text-base text-gray-200 mt-4">
-                <span class="font-bold text-[#F2E63D]"
-                  >ระบบใหม่ (มีคอมพิวเตอร์):</span
-                ><br />
-                - ผลผลิต: 14 รายการ<br />
-                - ค่าจ้างแรงงาน: $640/วัน (เท่าเดิม)<br />
-                - ค่าใช้จ่ายดำเนินการ: $800/วัน<br />
-                <span class="calculation-formula"
-                  >ผลิตภาพ = 14 / (640 + 800) = 14 / 1440 =
-                  <strong class="text-[#F2E63D]"
-                    >0.0097 รายการ/ดอลลาร์</strong
-                  ></span
-                >
-              </p>
-              <p class="text-lg font-bold text-gray-100 mt-4 mb-2">
-                การคำนวณ % การเปลี่ยนแปลง:
-              </p>
-              <p class="percentage-calculation">
-                % การเปลี่ยนแปลง = ((ผลิตภาพใหม่ - ผลิตภาพเดิม) / ผลิตภาพเดิม) *
-                100
-              </p>
-              <p class="percentage-calculation">
-                % การเปลี่ยนแปลง = ((0.0097 - 0.0077) / 0.0077) * 100 ≈ 25.97%
-              </p>
-              <p class="text-sm text-gray-400 mt-2">
-                (จากเอกสาร: ผลิตภาพแบบพหุปัจจัยเพิ่มขึ้น = 1.259 = 25.9%)
-              </p>
-            </div>
-          </div>
-
-          <!-- Labor Productivity Chart -->
-          <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
-            <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">
-              การเปรียบเทียบผลิตภาพแรงงาน
-            </h3>
-            <p class="text-center mb-4 text-sm text-gray-200">
-              การนำระบบใหม่เข้ามาช่วย เพิ่มผลิตภาพของพนักงานได้อย่างมหาศาล
-            </p>
-            <p class="text-xs text-gray-400 mb-2">
-              ตัวอย่าง: ระบบเดิมพนักงาน 1 คนผลิตได้ 0.25 รายการ/ชั่วโมง
-              แต่ระบบใหม่ผลิตได้ 0.4375 รายการ/ชั่วโมง
-            </p>
-            <div class="chart-container">
-              <canvas id="laborProductivityChart"></canvas>
-            </div>
-          </div>
-          <!-- Multifactor Productivity Chart -->
-          <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
-            <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">
-              การเปรียบเทียบผลิตภาพพหุปัจจัย
-            </h3>
-            <p class="text-center mb-4 text-sm text-gray-200">
-              แม้ต้นทุนรวมจะสูงขึ้น แต่เมื่อเทียบกับผลผลิตที่ได้
-              ก็ยังถือว่าคุ้มค่าและมีผลิตภาพสูงขึ้น
-            </p>
-            <p class="text-xs text-gray-400 mb-2">
-              ตัวอย่าง: ระบบเดิมได้ 0.0077 รายการ/ดอลลาร์ แต่ระบบใหม่ได้ 0.0097
-              รายการ/ดอลลาร์
-            </p>
-            <div class="chart-container">
-              <canvas id="multifactorProductivityChart"></canvas>
-            </div>
-          </div>
-          <!-- 3 Variables of Productivity Chart -->
-          <div
-            class="bg-[#2a2a4a] rounded-lg shadow-md p-6 col-span-1 md:col-span-2"
-          >
-            <h3 class="text-2xl font-bold text-center mb-4 text-[#00A6A6]">
-              3 ตัวแปรสำคัญของผลิตภาพ
-            </h3>
-            <p class="text-center mb-4 text-sm text-gray-200">
-              การจัดการที่ดีเป็นปัจจัยสำคัญที่สุดในการขับเคลื่อนผลิตภาพ
-              ตามมาด้วยการพัฒนาแรงงานและการลงทุนที่เหมาะสม
-            </p>
-            <p class="text-xs text-gray-400 mb-2">
-              ตัวอย่าง:
-              <span class="font-bold text-gray-300">การจัดการ</span> (เช่น
-              การนำเทคโนโลยีใหม่, การปรับปรุงกระบวนการ),
-              <span class="font-bold text-gray-300">แรงงาน</span> (เช่น
-              การฝึกอบรมทักษะ, การดูแลสุขภาพ),
-              <span class="font-bold text-gray-300">เงินทุน</span> (เช่น
-              การซื้อเครื่องจักรใหม่, การลงทุนในระบบ IT)
-            </p>
-            <div class="chart-container h-80 md:h-96">
-              <canvas id="productivityVariablesChart"></canvas>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="trends" class="mb-12">
-        <h2 class="text-3xl font-bold text-center mb-8 text-[#F27405]">
-          ตัวแปรสู่ความสำเร็จและเทรนด์แห่งอนาคต
-        </h2>
-        <div class="bg-[#2a2a4a] rounded-lg shadow-md p-6">
-          <h3 class="text-2xl font-bold mb-4 text-[#00A6A6]">
-            แนวโน้มใหม่ในการบริหาร
-          </h3>
-          <ul class="list-disc list-inside space-y-2 text-gray-200">
-            <li>
-              <span class="font-bold">Global Focus:</span> การมุ่งเน้นตลาดโลก
-              <span class="text-xs text-gray-400"
-                >(เช่น บริษัทขยายตลาดไปต่างประเทศ, การผลิตในหลายประเทศ)</span
-              >
-            </li>
-            <li>
-              <span class="font-bold">JIT & Supply Chain Partnership:</span>
-              การส่งมอบแบบทันเวลาและคู่ค้าในโซ่อุปทาน
-              <span class="text-xs text-gray-400"
-                >(เช่น โรงงานผลิตรถยนต์ได้รับชิ้นส่วนเมื่อต้องการใช้ทันที,
-                การสร้างความสัมพันธ์ระยะยาวกับซัพพลายเออร์)</span
-              >
-            </li>
-            <li>
-              <span class="font-bold">Rapid Product Development:</span>
-              การพัฒนาผลิตภัณฑ์ที่รวดเร็ว
-              <span class="text-xs text-gray-400"
-                >(เช่น การออกรุ่นโทรศัพท์ใหม่ทุกปี,
-                การพัฒนาวัคซีนอย่างเร่งด่วน)</span
-              >
-            </li>
-            <li>
-              <span class="font-bold">Mass Customization:</span>
-              การผลิตตามใจลูกค้าเฉพาะราย
-              <span class="text-xs text-gray-400"
-                >(เช่น การสั่งทำรองเท้าตามแบบที่ลูกค้าออกแบบ,
-                การปรับแต่งรถยนต์ตามความต้องการ)</span
-              >
-            </li>
-            <li>
-              <span class="font-bold">Employee Empowerment:</span>
-              การมอบอำนาจให้พนักงาน
-              <span class="text-xs text-gray-400"
-                >(เช่น
-                พนักงานตัดสินใจแก้ปัญหาให้ลูกค้าได้เองโดยไม่ต้องรออนุมัติ)</span
-              >
-            </li>
-            <li>
-              <span class="font-bold">Sustainability & Ethics:</span>
-              การผลิตที่ยั่งยืนและมีจริยธรรม
-              <span class="text-xs text-gray-400"
-                >(เช่น การใช้พลังงานหมุนเวียน, การลดของเสีย,
-                การไม่ใช้แรงงานเด็ก, การดูแลสภาพแวดล้อมการทำงาน)</span
-              >
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="ethics" class="bg-[#2a2a4a] rounded-lg shadow-md p-8">
-        <h2 class="text-3xl font-bold text-center mb-2 text-[#F27405]">
-          จริยธรรมและความรับผิดชอบต่อสังคม
-        </h2>
-        <p class="text-center max-w-3xl mx-auto mb-8 text-gray-200">
-          องค์กรที่ประสบความสำเร็จในระยะยาว
-          ต้องสร้างสมดุลและตอบสนองต่อผู้มีส่วนได้ส่วนเสีย (Stakeholders) ทุกฝ่าย
-        </p>
-        <div class="relative flex flex-col items-center">
-          <div class="p-6 bg-[#00A6A6] text-white rounded-full z-10 shadow-lg">
-            <p class="text-xl font-bold">องค์กร</p>
-          </div>
-          <div
-            class="grid grid-cols-2 md:grid-cols-3 gap-8 mt-8 w-full max-w-4xl"
-          >
-            <div class="text-center p-4 bg-gray-700 rounded-lg">
-              👥
-              <p class="font-bold text-gray-100">ลูกค้า</p>
-              <p class="text-xs text-gray-400 mt-1">
-                สินค้าปลอดภัย, บริการเป็นธรรม
-              </p>
-            </div>
-            <div class="text-center p-4 bg-gray-700 rounded-lg">
-              🚚
-              <p class="font-bold text-gray-100">Suppliers</p>
-              <p class="text-xs text-gray-400 mt-1">
-                จ่ายเงินตรงเวลา, สร้างความสัมพันธ์ที่ดี
-              </p>
-            </div>
-            <div class="text-center p-4 bg-gray-700 rounded-lg">
-              💰
-              <p class="font-bold text-gray-100">เจ้าของ</p>
-              <p class="text-xs text-gray-400 mt-1">
-                สร้างผลกำไรที่ยั่งยืน, บริหารความเสี่ยง
-              </p>
-            </div>
-            <div class="text-center p-4 bg-gray-700 rounded-lg">
-              🤝
-              <p class="font-bold text-gray-100">พนักงาน</p>
-              <p class="text-xs text-gray-400 mt-1">
-                สวัสดิการดี, สภาพแวดล้อมปลอดภัย
-              </p>
-            </div>
-            <div class="text-center p-4 bg-gray-700 rounded-lg">
-              🏦
-              <p class="font-bold text-gray-100">ผู้ให้กู้</p>
-              <p class="text-xs text-gray-400 mt-1">
-                ชำระหนี้คืนตามกำหนด, รายงานการเงินโปร่งใส
-              </p>
-            </div>
-            <div class="text-center p-4 bg-gray-700 rounded-lg">
-              🏛️
-              <p class="font-bold text-gray-100">รัฐบาล</p>
-              <p class="text-xs text-gray-400 mt-1">
-                เสียภาษีถูกต้อง, ปฏิบัติตามกฎหมาย
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
     </main>
-
+    
     <footer class="text-center p-6 mt-12 bg-[#121220] text-white rounded-t-xl">
-      <p>สรุปและเรียบเรียงเพื่อการสอบ | มหาวิทยาลัยธุรกิจบัณฑิตย์</p>
+        <p>สรุปและเรียบเรียงเพื่อการศึกษา | มหาวิทยาลัยธุรกิจบัณฑิตย์</p>
     </footer>
 
     <script>
-      // Function to wrap long labels for Chart.js
-      function wrapLabel(label, maxLength) {
-        if (label.length <= maxLength) {
-          return label;
-        }
-        const words = label.split(" ");
-        const lines = [];
-        let currentLine = "";
-        words.forEach((word) => {
-          if ((currentLine + " " + word).trim().length > maxLength) {
-            lines.push(currentLine.trim());
-            currentLine = word;
-          } else {
-            currentLine = (currentLine + " " + word).trim();
-          }
-        });
-        if (currentLine) {
-          lines.push(currentLine.trim());
-        }
-        return lines;
-      }
-
-      // Define chart colors
-      const chartColors = {
-        primary: "#00A6A6" /* Cyan */,
-        secondary: "#F29F05" /* Orange */,
-        accent: "#77D977" /* Light Green */,
-        darkAccent: "#F27405" /* Darker Orange */,
-      };
-
-      // Common Chart.js options for dark mode
-      const commonChartOptions = {
-        maintainAspectRatio: false,
-        scales: {
-          y: {
-            beginAtZero: true,
-            ticks: {
-              color: "#e0e0e0" /* Light color for Y-axis ticks */,
-            },
-            grid: {
-              color: "rgba(255, 255, 255, 0.1)" /* Light grid lines */,
-            },
-          },
-          x: {
-            ticks: {
-              color: "#e0e0e0" /* Light color for X-axis ticks */,
-            },
-            grid: {
-              color: "rgba(255, 255, 255, 0.1)" /* Light grid lines */,
-            },
-          },
-        },
-        plugins: {
-          legend: {
-            labels: {
-              color: "#e0e0e0" /* Light color for legend text */,
-            },
-          },
-          tooltip: {
-            titleColor: "#e0e0e0" /* Light color for tooltip title */,
-            bodyColor: "#e0e0e0" /* Light color for tooltip body */,
-            backgroundColor:
-              "rgba(0, 0, 0, 0.7)" /* Darker tooltip background */,
-            callbacks: {
-              title: function (tooltipItems) {
-                const item = tooltipItems[0];
-                let label = item.chart.data.labels[item.dataIndex];
-                if (Array.isArray(label)) {
-                  return label.join(" ");
+        // Function to wrap long labels for Chart.js
+        function wrapLabel(label, maxLength) {
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            words.forEach(word => {
+                if ((currentLine + ' ' + word).trim().length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = word;
                 } else {
-                  return label;
+                    currentLine = (currentLine + ' ' + word).trim();
                 }
-              },
+            });
+            if (currentLine) {
+                lines.push(currentLine.trim());
+            }
+            return lines;
+        }
+
+        // Define chart colors
+        const chartColors = {
+            primary: '#00A6A6', /* Cyan */
+            secondary: '#F29F05', /* Orange */
+            accent: '#77D977', /* Light Green */
+            darkAccent: '#F27405' /* Darker Orange */
+        };
+
+        // Common Chart.js options for dark mode
+        const commonChartOptions = {
+            maintainAspectRatio: false,
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        color: '#e0e0e0' /* Light color for Y-axis ticks */
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)' /* Light grid lines */
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: '#e0e0e0' /* Light color for X-axis ticks */
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)' /* Light grid lines */
+                    }
+                }
             },
-          },
-        },
-      };
+            plugins: {
+                legend: {
+                    labels: {
+                        color: '#e0e0e0' /* Light color for legend text */
+                    }
+                },
+                tooltip: {
+                    titleColor: '#e0e0e0', /* Light color for tooltip title */
+                    bodyColor: '#e0e0e0', /* Light color for tooltip body */
+                    backgroundColor: 'rgba(0, 0, 0, 0.7)', /* Darker tooltip background */
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                                return label.join(' ');
+                            } else {
+                                return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
 
-      // Data for Labor Productivity Chart (from PDF Page 29)
-      const laborProductivityData = {
-        labels: ["ระบบเดิม", "ระบบใหม่ (มีคอมพิวเตอร์)"],
-        datasets: [
-          {
-            label: "รายการ/ชั่วโมงแรงงาน",
-            data: [0.25, 0.4375],
-            backgroundColor: [chartColors.primary, chartColors.secondary],
-            borderColor: [chartColors.primary, chartColors.secondary],
-            borderWidth: 1,
-          },
-        ],
-      };
-      new Chart(document.getElementById("laborProductivityChart"), {
-        type: "bar",
-        data: laborProductivityData,
-        options: commonChartOptions,
-      });
+        // Data for Labor Productivity Chart (from PDF Page 29)
+        const laborProductivityData = {
+            labels: ['ระบบเดิม', 'ระบบใหม่ (มีคอมพิวเตอร์)'],
+            datasets: [{
+                label: 'รายการ/ชั่วโมงแรงงาน',
+                data: [0.25, 0.4375],
+                backgroundColor: [chartColors.primary, chartColors.secondary],
+                borderColor: [chartColors.primary, chartColors.secondary],
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('laborProductivityChart'), {
+            type: 'bar',
+            data: laborProductivityData,
+            options: commonChartOptions
+        });
 
-      // Data for Multifactor Productivity Chart (from PDF Page 30)
-      const multifactorProductivityData = {
-        labels: ["ระบบเดิม", "ระบบใหม่ (มีคอมพิวเตอร์)"],
-        datasets: [
-          {
-            label: "รายการ/ดอลลาร์",
-            data: [0.0077, 0.0097],
-            backgroundColor: [chartColors.primary, chartColors.secondary],
-            borderColor: [chartColors.primary, chartColors.secondary],
-            borderWidth: 1,
-          },
-        ],
-      };
-      new Chart(document.getElementById("multifactorProductivityChart"), {
-        type: "bar",
-        data: multifactorProductivityData,
-        options: commonChartOptions,
-      });
+        // Data for Multifactor Productivity Chart (from PDF Page 30)
+        const multifactorProductivityData = {
+            labels: ['ระบบเดิม', 'ระบบใหม่ (มีคอมพิวเตอร์)'],
+            datasets: [{
+                label: 'รายการ/ดอลลาร์',
+                data: [0.0077, 0.0097],
+                backgroundColor: [chartColors.primary, chartColors.secondary],
+                borderColor: [chartColors.primary, chartColors.secondary],
+                borderWidth: 1
+            }]
+        };
+        new Chart(document.getElementById('multifactorProductivityChart'), {
+            type: 'bar',
+            data: multifactorProductivityData,
+            options: commonChartOptions
+        });
 
-      // Data for Productivity Variables Chart (from PDF Pages 32-34)
-      const productivityVariablesData = {
-        labels: [
-          "การจัดการ (Management)",
-          "แรงงาน (Labor)",
-          "เงินทุน (Capital)",
-        ],
-        datasets: [
-          {
-            label: "สัดส่วนความสำคัญ",
-            data: [50, 30, 20], // Assuming relative importance based on text emphasis (Management > Labor > Capital)
-            backgroundColor: [
-              chartColors.darkAccent,
-              chartColors.secondary,
-              chartColors.primary,
-            ],
-            hoverOffset: 4,
-          },
-        ],
-      };
-      new Chart(document.getElementById("productivityVariablesChart"), {
-        type: "doughnut",
-        data: productivityVariablesData,
-        options: commonChartOptions,
-      });
+        // Data for Productivity Variables Chart (from PDF Pages 32-34)
+        const productivityVariablesData = {
+            labels: ['การจัดการ (Management)', 'แรงงาน (Labor)', 'เงินทุน (Capital)'],
+            datasets: [{
+                label: 'สัดส่วนความสำคัญ',
+                data: [50, 30, 20], // Assuming relative importance based on text emphasis (Management > Labor > Capital)
+                backgroundColor: [chartColors.darkAccent, chartColors.secondary, chartColors.primary],
+                hoverOffset: 4
+            }]
+        };
+        new Chart(document.getElementById('productivityVariablesChart'), {
+            type: 'doughnut',
+            data: productivityVariablesData,
+            options: commonChartOptions
+        });
     </script>
-  </body>
+</body>
 </html>
+�
